@@ -1,4 +1,4 @@
-package com.geeksforgeeks.dataStructure;
+package com.gfg.stacks;
 
 import java.util.Arrays;
 

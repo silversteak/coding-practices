@@ -1,4 +1,4 @@
-package com.geeksforgeeks.dataStructure;
+package com.geeksforgeeks.graphs;
 import java.util.LinkedList;
 
 public class UndirectedGraphCycle {
