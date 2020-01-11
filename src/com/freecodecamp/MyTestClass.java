@@ -27,7 +27,7 @@ public class MyTestClass {
 			System.out.print(it.next() + " ");
 		}*/
 		
-		Stack<String> stk = new Stack<>();
+		/*Stack<String> stk = new Stack<>();
 				
 		stk.push("A");
 		stk.push("B");
@@ -38,7 +38,21 @@ public class MyTestClass {
 		System.out.println(stk.top());
 		stk.push("X");
 		
-		System.out.println(stk.toString());
+		System.out.println(stk.toString());*/
+		
+		HashSet myset = new HashSet();
+		
+		myset.add(6);
+		myset.add(3);
+		myset.add(9);
+		
+		Iterator<Integer> itr = myset.iterator();
+
+		System.out.println("Traversing over Set using Iterator");
+		while(itr.hasNext()){
+		  System.out.println(itr.next());
+		}
+
 		
 	}
 
