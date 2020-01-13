@@ -40,18 +40,13 @@ public class MyTestClass {
 		
 		System.out.println(stk.toString());*/
 		
-		HashSet myset = new HashSet();
+		char ch[] = "KrishnenduKumarRahaman".toCharArray();
 		
-		myset.add(6);
-		myset.add(3);
-		myset.add(9);
+		MyStringBuilder sb = new MyStringBuilder(ch);
 		
-		Iterator<Integer> itr = myset.iterator();
-
-		System.out.println("Traversing over Set using Iterator");
-		while(itr.hasNext()){
-		  System.out.println(itr.next());
-		}
+		System.out.println(sb.size);
+		System.out.println(sb.charCount);
+		
 
 		
 	}
