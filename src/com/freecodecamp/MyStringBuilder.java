@@ -29,21 +29,9 @@ public class MyStringBuilder{
 		append(ch);
 	}
 	
-	private MyStringBuilder append(char ch[]) {
-		while(resizeRequired(ch)) {
-			resizeBuffer(ch);
-		};
-		
-		addString(ch);
-		updateCharCount(ch.length);
-		return this;
-	}
-	
 	private MyStringBuilder append(String newStr) {
-		while(resizeRequired(newStr)) {
-			resizeBuffer(newStr);
-		};
-		
+		if(resizeRequired(newStr))
+			resizeBuffer(newStr);	
 		addString(newStr);
 		updateCharCount(newStr.length());
 		return this;
@@ -56,7 +44,8 @@ public class MyStringBuilder{
 	private void resizeBuffer(String newInput) {
 		int oldSize = this.size;
 		char [] newStr = new char[this.size];
-		this.size *= BUFFER_MULTIPILER; // Update the BufferSize;
+		 // Update the BufferSize;
+		this.size *= BUFFER_MULTIPILER;
 		System.out.println("Resizing the array : increasing the size from "+oldSize+ " to "+ this.size);
 		System.arraycopy(this.str, 0, newStr, 0, oldSize); // Copy the old Array
 		this.str = newStr; // Set the new Array
@@ -66,9 +55,12 @@ public class MyStringBuilder{
 		return this.charCount + newInput.length() > this.size ;
 	}
 	
-
-	private void updateCharCount(int charCount) {
-		this.charCount += charCount;
+	private MyStringBuilder append(char ch[]) {
+		if(resizeRequired(ch))
+			resizeBuffer(ch);		
+		addString(ch);
+		updateCharCount(ch.length);
+		return this;
 	}
 
 	private void addString(char[] newInput) {
@@ -87,7 +79,9 @@ public class MyStringBuilder{
 	private boolean resizeRequired(char[] newInput) {
 		return this.charCount + newInput.length > this.size ;
 	}
-
 	
+	private void updateCharCount(int charCount) {
+		this.charCount += charCount;
+	}
 	
 }

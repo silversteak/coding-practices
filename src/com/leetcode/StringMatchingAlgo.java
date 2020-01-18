@@ -54,10 +54,16 @@ public class StringMatchingAlgo {
         return product;
     }
 	
-	
-
 	public static void main(String[] args) {
 
+		long test = 1;
+		
+		for(int i : primes) {
+			test *= i;
+		}
+		
+		System.out.println(test);
+		
 	}
 
 }
