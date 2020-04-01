@@ -143,6 +143,39 @@ public class TreeTraversal {
 		
 	}
 	
+	public static void printSpiralOrder(Node root) {
+		Queue<Node> q = new LinkedList<>();
+		Stack<Node> stk = new Stack<>();
+		boolean reverse = false;
+		q.add(root);
+		
+		while(!q.isEmpty()) {
+			int size = q.size();
+			for (int i = 0; i < size; i++) {
+				Node temp = q.poll();
+				if(!reverse) {
+					System.out.print(temp.data + " ");
+				}else {
+					stk.add(temp);
+				}
+				//System.out.print(temp.data + " ");
+				if (temp.left != null)
+					q.add(temp.left);
+				if (temp.right != null)
+					q.add(temp.right);
+			}
+			System.out.println();
+			
+			if(reverse) {
+				while(!stk.isEmpty()) {
+					System.out.println(stk.pop().data + " ");
+				}
+			}
+			reverse = !reverse;
+		}
+		
+	}
+	
 	public static void reverseLevelOrder(Node root) {
 		Stack<Node> stk = new Stack<>();
 		Queue<Node> q = new LinkedList<>();
@@ -487,13 +520,13 @@ public class TreeTraversal {
 */		
 		//System.out.println(isChildParentSum(root));
 		
-		Node p = new Node(12);
+/*		Node p = new Node(12);
 		
-		/*System.out.println(diameter(root));
+		System.out.println(diameter(root));
 		
 		diameterOfTree(root);
 		
-		System.out.println(diameterOfTree);*/
+		System.out.println(diameterOfTree);
 		
 		//System.out.println(inorderSuccessor(root, p));
 		
@@ -507,7 +540,12 @@ public class TreeTraversal {
 		
 		Node inorderSuccessor = inorderSuccessorTree(root, root.left.right.left);
 		
-		System.out.println("The inorder Successor is "+ inorderSuccessor.data);
+		System.out.println("The inorder Successor is "+ inorderSuccessor.data)*/;
+		
+		
+		System.out.println("-----------------------------------------------------");
+		
+		printSpiralOrder(root);
 		
 		
 	}
