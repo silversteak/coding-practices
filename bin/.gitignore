@@ -1,4 +1,2 @@
-/LinkedList/
-/arrays/
-/com/
-/hrc/
+*.class
+*/bin/*

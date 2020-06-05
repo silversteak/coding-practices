@@ -19,9 +19,6 @@ public class LowestCommonSubsequence {
 		else if(m > 0 && (n == 0 || dp[m][n-1] < dp[m-1][n])) {
 			print(s1, s2, m-1, n);
 		}
-		
-		
-		
 	} 
 	
 	
