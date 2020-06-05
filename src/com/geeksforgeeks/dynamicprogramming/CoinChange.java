@@ -1,5 +1,8 @@
 package com.geeksforgeeks.dynamicprogramming;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CoinChange {
 
 	public static int coinChangeRecursive (int arr[], int m, int sum) {
@@ -60,7 +63,12 @@ public class CoinChange {
 			for(int j= 0; j <=4; j++)
 				memo[i][j] = -1;
 		}
+		
+		List<Long> c = new ArrayList<>();
+		Long coins[] = new Long[c.size()];
+        coins = c.toArray(coins);
 
+		
 		System.out.println(coinChangeRecursive(arr, 3, 4));
 		System.out.println(coinChangeMemo(arr, 3, 4, memo));
 		System.out.println(coinChangeDP(arr,amount));

@@ -3,6 +3,28 @@ package com.geeksforgeeks.dynamicprogramming;
 
 public class LowestCommonSubsequence {
 	
+	public static int dp[][];
+	
+	public static StringBuffer sb;
+	
+	public static void print(String s1, String s2, int m, int n) {
+		
+		if(m > 0 && n > 0 && s1.charAt(m-1) == s2.charAt(n-1)) {
+			print(s1, s2, m-1, n-1);
+			sb.append(s2.charAt(n-1));
+		}
+		else if(n > 0 && (m == 0 || dp[m][n-1] >= dp[m-1][n])) {
+			print(s1, s2, m, n-1);
+		}
+		else if(m > 0 && (n == 0 || dp[m][n-1] < dp[m-1][n])) {
+			print(s1, s2, m-1, n);
+		}
+		
+		
+		
+	} 
+	
+	
 	public static int lcs(String s1, String s2, int m, int n) {
 		
 		if(m == 0 || n  == 0)
@@ -34,7 +56,7 @@ public class LowestCommonSubsequence {
 	
 	public static int lcsDP(String s1, String s2, int m, int n) {
 		
-		int dp[][] = new int[m+1][n+1];
+		dp= new int[m+1][n+1];
 	/*	for(int i = 0; i <= m; i++)
 			dp[i][0] = 0;
 		
@@ -43,7 +65,7 @@ public class LowestCommonSubsequence {
 		*/
 		for(int i = 1; i <= m; i++) {
 			for(int j = 1; j <= n; j++) {
-				if(s1.charAt(m-1) == s2.charAt(n-1))
+				if(s1.charAt(i-1) == s2.charAt(j-1))
 					dp[i][j] = 1 + dp[i-1][j-1];
 				else
 					dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
@@ -58,7 +80,7 @@ public class LowestCommonSubsequence {
 		String s2 = "BACDBDCD"; 
 		int m = s1.length(), n = s2.length();
 		int memo[][] = new int[m+1][n+1];
-		int dp[][] = new int[m+1][n+1];
+		dp = new int[m+1][n+1];
 		for(int i = 0; i <=m; i++) {
 			for(int j = 0; j <= n; j++)
 				memo[i][j] = -1;
@@ -68,9 +90,14 @@ public class LowestCommonSubsequence {
 				dp[i][j] = -1;
 		}
 		
-		System.out.println(lcs(s1,s2,m,n));
-		System.out.println(lcsMemo(s1, s2, m, n, memo));
+		//System.out.println(lcs(s1,s2,m,n));
+		//System.out.println(lcsMemo(s1, s2, m, n, memo));
+		
+		sb = new StringBuffer();
+		
 		System.out.println(lcsDP(s1, s2, m, n));
+		print(s1, s2, m, n);
+		System.out.println(sb.toString());
 	}
 
 

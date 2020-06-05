@@ -1,6 +1,53 @@
 package com.geeksforgeeks;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AnagramSearch {
+	
+	
+	public static List<Integer> findAnagrams(String s, String p) {
+        List<Integer> result = new ArrayList<>();
+        
+        if(s == null || s.length() == 0)
+            return result;
+        
+        int hash[] = new int[26];
+        
+        for(char ch : p.toCharArray()){
+            hash[ch - 'a']++;
+        }
+        
+        int left = 0, right = 0, n = s.length();
+        int count = 0;
+        while(right < n){
+            
+            if(hash[s.charAt(right)-'a']-- > 0){
+            	//hash[s.charAt(right)-'a']--;
+            	count++;
+            }
+
+            right++;
+            
+            if(count == p.length()){
+                result.add(left);
+            }
+            
+            if(right - left == p.length()){
+            	if(hash[s.charAt(left)-'a']++ >= 0) {
+            		count--;            		
+            	}
+            	else {
+            		System.out.println(hash[s.charAt(left)-'a']);
+            	}
+                left++;
+            }    
+            
+        }
+        
+        return result;
+        
+    }
 	
 	static int MAX_CHAR = 256; 
 
@@ -54,7 +101,14 @@ public class AnagramSearch {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 			char str[] = "string".toCharArray(); 
-			System.out.println(findRank(str)); 
+			//System.out.println(findRank(str)); 
+			
+			List<Integer> list = findAnagrams("cbaebabacd", "abc");
+			
+			for(Integer el : list)
+				System.out.println(el);
+			
+			
 		}
 
 	}

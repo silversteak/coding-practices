@@ -13,6 +13,9 @@ public class QueueNumberCreation {
 		queue.add("5");
 		queue.add("6");
 		
+		String j = "agsdha";
+		StringBuffer br = new StringBuffer(j);
+		
 		for(int i = 0; i < n; i++) {
 			String temp = queue.poll();
 			result.add(temp);
@@ -26,6 +29,46 @@ public class QueueNumberCreation {
 		
 		System.out.println(result);
 	}
+	
+	public boolean check(String n){
+        StringBuffer br = new StringBuffer(n);
+         boolean test = br.equals(br.reverse()) ? true : false;
+         System.out.println(test);
+         return test;
+    }
+    
+    public void magicNumbers(int n)
+    {
+        Queue<String> queue = new LinkedList<>();
+		queue.add("4");
+		queue.add("5");
+		
+		/*for(int i = 0; i < n; i++) {
+			String temp = queue.poll();
+			result.add(temp);
+			queue.add(temp+"4");
+			queue.add(temp+"5");
+		}*/
+		int i = 0;
+		while(!queue.isEmpty() && i < n){
+		    String temp = queue.poll();
+			if(check((temp)) == true){
+			    System.out.println(temp);
+			    i++;
+			}
+			if(i == n)
+			    break;
+			queue.add(temp+"4");
+			queue.add(temp+"5");    
+		}
+		
+		/*while(!queue.isEmpty()) {
+			result.add(queue.poll());
+		}*/
+        
+        
+    }
+	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
