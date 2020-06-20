@@ -1,6 +1,4 @@
-.settings
-.classpath
-.project
-*.class
-*/bin/*
+/LinkedList/
+/arrays/
+/hrc/
 /com/
