@@ -32,6 +32,12 @@ public abstract class Vehicle {
 	public void setListOfParkingSpots(List<ParkingSpot> listOfParkingSpots) {
 		this.listOfParkingSpots = listOfParkingSpots;
 	}
+	@Override
+	public String toString() {
+		return "Vehicle [licensePlate=" + licensePlate + ", vehicleSize=" + vehicleSize + ", listOfParkingSpots="
+				+ listOfParkingSpots + "]";
+	}
+	
 	
 	
 	

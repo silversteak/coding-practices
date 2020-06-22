@@ -4,7 +4,7 @@ public class ParkingSpot {
 	
 	private Vehicle vehicle;
 	private VehicleSize spotSize;
-	private boolean isAvailable;
+	private boolean isAvailable = Boolean.TRUE;
 	
 	public ParkingSpot(VehicleSize spotSize) {
 		super();
@@ -31,5 +31,11 @@ public class ParkingSpot {
 	public void setAvailable(boolean isAvailable) {
 		this.isAvailable = isAvailable;
 	}
+
+	@Override
+	public String toString() {
+		return "ParkingSpot [vehicle=" + vehicle + ", spotSize=" + spotSize + ", isAvailable=" + isAvailable + "]";
+	}
+	
 	
 }

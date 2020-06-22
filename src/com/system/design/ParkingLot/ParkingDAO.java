@@ -16,9 +16,8 @@ public class ParkingDAO {
 		return parkingDAO;
 	}
 	
-	private Map<Integer, ParkingSpot> store = new HashMap<>();
 	
-	public void populateTheStore() {
+	public void populateTheStore(Map<Integer, ParkingSpot> store) {
 		int numberOfBikeSpot = 15;
 		int numberOfCarSpot = 10;
 		int numberOfBus = 3;
@@ -37,7 +36,7 @@ public class ParkingDAO {
 		
 	}
 	
-	public boolean parkVehicle(Vehicle vehicle) {
+	public boolean parkVehicle(Vehicle vehicle,Map<Integer, ParkingSpot> store) {
 		for(ParkingSpot parkingSpot : store.values()) {
 			if(vehicle.vehicleSize == parkingSpot.getSpotSize() && parkingSpot.isAvailable()) {
 				parkingSpot.setVehicle(vehicle);
@@ -49,7 +48,7 @@ public class ParkingDAO {
 		return Boolean.FALSE;
 	}
 	
-	public boolean freeVehicle(Vehicle vehicle) {
+	public boolean freeVehicle(Vehicle vehicle,Map<Integer, ParkingSpot> store) {
 		for(ParkingSpot parkingSpot : store.values()) {
 			if(!parkingSpot.isAvailable() && vehicle.getLicensePlate().equals(parkingSpot.getVehicle().getLicensePlate())) {
 				parkingSpot.setVehicle(null);
