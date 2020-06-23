@@ -1,9 +1,13 @@
 package com.system.design.Notification;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
 	public static void main(String[] args) {
 		
+		List<Integer> list = new ArrayList<>();
 		
 		Subscriber1 subscriber1 = new Subscriber1(NotificationMode.SMS);
 		Subscriber2 subscriber2 = new Subscriber2(NotificationMode.EMAIL);
