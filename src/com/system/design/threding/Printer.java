@@ -4,7 +4,7 @@ package com.system.design.threding;
 public class Printer {
 	
 	private boolean isOdd = false;
-	
+		
 	synchronized void printEven(int number) {
 		while(!isOdd) {
 			try {

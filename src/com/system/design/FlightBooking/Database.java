@@ -8,7 +8,7 @@ public class Database {
 
 	private static Database database = null;
 	
-	private Database () {};
+	private Database () {init();};
 	
 	public static Database getInstance() {
 		if(database == null) {
