@@ -4,6 +4,29 @@ public class StockSpan {
 
 	
 	/*
+	 * peak valley approach 
+	 * 1st find buy in the valley and then sell
+	 */
+	
+	public static int maxProfitII(int prices[]) {
+		int i = 0;
+		int valley = prices[0];
+		int peak = prices[0];
+		int maxprofit = 0;
+		while (i < prices.length - 1) {
+			while (i < prices.length - 1 && prices[i] >= prices[i + 1])
+				i++;
+			valley = prices[i];
+			while (i < prices.length - 1 && prices[i] <= prices[i + 1])
+				i++;
+			peak = prices[i];
+			maxprofit += peak - valley;
+		}
+		return maxprofit;
+	}
+	
+	
+	/*
 	 * stock span problem 3 leetcode
 	 * 2 stocks -- 1st buy and 1st sell and 2nd buy and 2nd sell
 	 * 
@@ -29,14 +52,7 @@ public class StockSpan {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	// DP[len][2]
 	/*
