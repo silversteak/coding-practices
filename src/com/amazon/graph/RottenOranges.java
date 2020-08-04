@@ -1,4 +1,4 @@
-package com.amazon;
+package com.amazon.graph;
 
 import java.util.LinkedList;
 import java.util.Queue;

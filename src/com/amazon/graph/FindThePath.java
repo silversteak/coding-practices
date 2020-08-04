@@ -1,4 +1,4 @@
-package com.amazon;
+package com.amazon.graph;
 
 public class FindThePath {
 

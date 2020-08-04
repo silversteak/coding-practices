@@ -1,4 +1,4 @@
-package com.amazon;
+package com.amazon.graph;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

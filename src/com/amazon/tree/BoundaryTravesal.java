@@ -1,4 +1,4 @@
-package com.amazon;
+package com.amazon.tree;
 
 public class BoundaryTravesal {
 
