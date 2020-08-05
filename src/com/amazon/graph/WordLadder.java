@@ -57,7 +57,6 @@ public class WordLadder {
 			++level;
 		}
 		
-		
 		return -1;
 	}
 
