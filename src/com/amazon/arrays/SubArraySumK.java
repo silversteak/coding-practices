@@ -5,8 +5,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SubArraySumK {
-
+	
 	static ArrayList<Integer> subarraySum(int n, int s, int[] m) {
+		int prefix = 0;
+		int start = 0;
+		ArrayList<Integer> ans = new ArrayList<Integer>();
+		for(int i = 0 ; i < n; i++) {
+			prefix += m[i];
+			
+			while(prefix > s && start < i) {
+				prefix -= m[start];
+				start++;
+			}
+			
+			if(prefix - s == 0) {
+				ans.add(start+1);
+				ans.add(i+1);
+				return ans;
+			}
+		}
+		ans.add(-1);
+		return ans;
+		
+	}
+
+	static ArrayList<Integer> subarraySum1(int n, int s, int[] m) {
 		int prefix = 0;
 		ArrayList<Integer> ans = new ArrayList<Integer>();
 		Map<Integer, Integer> hash = new HashMap<>();
