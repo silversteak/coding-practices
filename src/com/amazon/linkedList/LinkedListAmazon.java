@@ -2,7 +2,7 @@ package com.amazon.linkedList;
 
 import java.util.Stack;
 
-public class LinkedListAmazon {
+public class LinkedListAmazon<node> {
 
 	static class Node {
 		int data;
@@ -295,6 +295,12 @@ public class LinkedListAmazon {
 		return head;
 	}
 
+	/**
+	 * Use of stack to get the darta
+	 * @param first
+	 * @param second
+	 * @return
+	 */
 	static Node addLists(Node first, Node second){
 		Stack<Integer> stk1 = new Stack<>();
 		Stack<Integer> stk2 = new Stack<>();
@@ -329,7 +335,12 @@ public class LinkedListAmazon {
 		return head;
 	}
 
-	Node rearrangeEvenOdd(Node head)
+	/**
+	 * 
+	 * @param head
+	 * @return
+	 */
+	static Node rearrangeEvenOdd(Node head)
 	{
 		if(head == null)
 			return null;
@@ -352,6 +363,12 @@ public class LinkedListAmazon {
 		return head;
 	}
 
+	/**
+	 * 
+	 * @param head
+	 * @param n
+	 * @return
+	 */
 	int getNthFromLast(Node head, int n)
 	{
 		Node fast_ptr = head, slow_ptr = head;
@@ -374,4 +391,125 @@ public class LinkedListAmazon {
 		// Your code here	
 	}
 
+	static Node sortedMerge(Node a, Node b) { 
+		Node result = null; 
+		/* Base cases */
+		if (a == null) 
+			return b; 
+		if (b == null) 
+			return a; 
+
+		/* Pick either a or b, and recur */
+		if (a.data <= b.data) { 
+			result = a; 
+			result.next = sortedMerge(a.next, b); 
+		} 
+		else { 
+			result = b; 
+			result.next = sortedMerge(a, b.next); 
+		} 
+		return result; 
+	}
+	
+	public static Node findIntersection(Node head1, Node head2){
+        Node result = null;
+        
+        if(head1 == null || head2 == null)
+        	return null;
+        
+        if(head1.data == head2.data) {
+        	result = new Node(head1.data);
+        	result.next = findIntersection(head1.next, head2.next);
+        }else if(head1.data < head2.data){
+        	return findIntersection(head1.next, head2);
+        }else {
+        	return findIntersection(head1, head2.next);
+        }
+       
+        return result;
+    }
+
+	static Node mergeSort(Node h) { 
+		// Base case : if head is null 
+		if (h == null || h.next == null) { 
+			return h; 
+		} 
+
+		// get the middle of the list 
+		Node middle = getMiddleHelper(h); 
+		Node nextofmiddle = middle.next; 
+
+		// set the next of middle node to null 
+		middle.next = null; 
+
+		// Apply mergeSort on left list 
+		Node left = mergeSort(h); 
+
+		// Apply mergeSort on right list 
+		Node right = mergeSort(nextofmiddle); 
+
+		// Merge the left and right lists 
+		Node sortedlist = sortedMerge(left, right); 
+		return sortedlist; 
+	} 
+
+	// Utility function to get the middle of the linked list 
+    public static Node getMiddleHelper(Node head) { 
+        if (head == null) 
+            return head; 
+  
+        Node slow = head, fast = head; 
+  
+        while (fast.next != null && fast.next.next != null) { 
+            slow = slow.next; 
+            fast = fast.next.next; 
+        } 
+        return slow; 
+    } 
+
+    
+    
+    public static void removeLoop(Node head){
+        // code here
+        // remove the loop without losing any nodes
+        Node slow = head;
+        Node fast = head;
+        // boolean to check if there a loop exists in the given Linked List.
+        boolean flag = false;
+        // Traverse the list until fast or fast.next becomes null.
+        while (fast != null && fast.next != null) {
+          // Move forward slow by one node.
+          slow = slow.next;
+          // Move forward fast by two nodes.
+          fast = fast.next.next;
+          // Check if slow and fast meet at some node, then there is a loop in the Linked
+          // List and So make flag true and break.
+          if (slow == fast) {
+            flag = true;
+            break;
+          }
+        }
+        // When there is a loop in the Linked List.
+        if (flag) {
+          // Assign head to slow.
+          slow = head;
+          // Loop until next of slow and fast are not equal.
+          while (slow != fast) {
+            slow = slow.next;
+            fast = fast.next;
+          }
+          
+          Node prev = fast;
+          fast = fast.next;
+          while(fast != slow){
+              prev = fast;
+              fast = fast.next;
+          }
+          
+          // Make next of fast that is last node of Linked List NULL.
+          prev.next = null;
+        }
+
+      }
+    
 }
