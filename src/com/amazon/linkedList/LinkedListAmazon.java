@@ -2,7 +2,7 @@ package com.amazon.linkedList;
 
 import java.util.Stack;
 
-public class LinkedListAmazon<node> {
+public class LinkedListAmazon {
 
 	static class Node {
 		int data;
