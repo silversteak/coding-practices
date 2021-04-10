@@ -1,5 +1,8 @@
 package com.amazon.tree;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class BoundaryTravesal {
 
 	static class Node{
@@ -63,6 +66,10 @@ public class BoundaryTravesal {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		String test = "qwert:,wehrgehrt";
+		List<String> ped = Arrays.asList(test.split(test, ','));
+		
 		Node root = new Node(1);
 		root.left = new Node (2);
 		root.right = new Node(3);

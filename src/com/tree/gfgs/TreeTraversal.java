@@ -27,7 +27,9 @@ public class TreeTraversal {
 
 	static int diameterOfTree = 0;
 
-	static boolean v1 = false, v2 = false;
+	static boolean v1 = false, vGraph2 = false;
+
+	private static boolean v2;
 
 	public static void inOrder(Node root) {
 		if (root == null)
@@ -270,6 +272,7 @@ public class TreeTraversal {
 
 			state.put(currentNode, currentState + 1);
 		}
+		
 
 		System.out.println(myList);
 

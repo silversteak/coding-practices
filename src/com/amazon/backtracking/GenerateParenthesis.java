@@ -24,8 +24,7 @@ public class GenerateParenthesis {
 			result.add(pattern);
 			return;
 		}
-
-
+		
 		if(left > 0){
 			generateParenthesis(pattern + "(", left - 1, right);
 		}

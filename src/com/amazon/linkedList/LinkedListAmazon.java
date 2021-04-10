@@ -109,6 +109,30 @@ public class LinkedListAmazon {
 		return head;
 	}
 
+	Node reverseUtil(Node curr, Node prev, Node head) 
+	{ 
+
+		/* If last node mark it head*/
+		if (curr.next == null) { 
+			head = curr; 
+
+			/* Update next to prev node */
+			curr.next = prev; 
+
+			return head; 
+		} 
+
+		/* Save curr->next node for recursive call */
+		Node next1 = curr.next; 
+
+		/* and update next ..*/
+		curr.next = prev; 
+
+		reverseUtil(next1, curr, head); 
+		return head; 
+	} 
+
+
 	/**
 	 * rotate the list by k nodes
 	 * @param head
@@ -247,7 +271,7 @@ public class LinkedListAmazon {
 
 	        while(temp.next != null && temp.next.next != null){
 	            Node first = temp.next;
-	            Node second = temp.next;
+	            Node second = temp.next.next;
 
 	            // set temp to seconf node
 	            temp.next = second;
@@ -363,6 +387,49 @@ public class LinkedListAmazon {
 		return head;
 	}
 
+	static void zigZagList(Node head) 
+	{ 
+		// If flag is true, then 
+		// next node should be greater 
+		// in the desired output. 
+		boolean flag = true; 
+
+		int temp = 0;
+		
+		// Traverse linked list starting from head. 
+		Node current = head; 
+		while (current != null && current.next != null) { 
+			if (flag == true) /* "<" relation expected */
+			{ 
+				/* If we have a situation like A > B > C  
+	            where A, B and C are consecutive Nodes  
+	            in list we get A > B < C by swapping B  
+	            and C */
+				if (current.data > current.next.data) { 
+					temp = current.data; 
+					current.data = current.next.data; 
+					current.next.data = temp; 
+				} 
+			} 
+			else /* ">" relation expected */
+			{ 
+				/* If we have a situation like A < B < C where  
+	            A, B and C are consecutive Nodes in list we  
+	            get A < C > B by swapping B and C */
+				if (current.data < current.next.data) { 
+					temp = current.data; 
+					current.data = current.next.data; 
+					current.next.data = temp; 
+				} 
+			} 
+
+			current = current.next; 
+
+			/* flip flag for reverse checking */
+			flag = !(flag); 
+		} 
+	} 
+
 	/**
 	 * 
 	 * @param head
@@ -388,7 +455,6 @@ public class LinkedListAmazon {
 
 		}
 		return slow_ptr.data;
-		// Your code here	
 	}
 
 	static Node sortedMerge(Node a, Node b) { 
@@ -410,24 +476,24 @@ public class LinkedListAmazon {
 		} 
 		return result; 
 	}
-	
+
 	public static Node findIntersection(Node head1, Node head2){
-        Node result = null;
-        
-        if(head1 == null || head2 == null)
-        	return null;
-        
-        if(head1.data == head2.data) {
-        	result = new Node(head1.data);
-        	result.next = findIntersection(head1.next, head2.next);
-        }else if(head1.data < head2.data){
-        	return findIntersection(head1.next, head2);
-        }else {
-        	return findIntersection(head1, head2.next);
-        }
-       
-        return result;
-    }
+		Node result = null;
+
+		if(head1 == null || head2 == null)
+			return null;
+
+		if(head1.data == head2.data) {
+			result = new Node(head1.data);
+			result.next = findIntersection(head1.next, head2.next);
+		}else if(head1.data < head2.data){
+			return findIntersection(head1.next, head2);
+		}else {
+			return findIntersection(head1, head2.next);
+		}
+
+		return result;
+	}
 
 	static Node mergeSort(Node h) { 
 		// Base case : if head is null 
@@ -454,62 +520,62 @@ public class LinkedListAmazon {
 	} 
 
 	// Utility function to get the middle of the linked list 
-    public static Node getMiddleHelper(Node head) { 
-        if (head == null) 
-            return head; 
-  
-        Node slow = head, fast = head; 
-  
-        while (fast.next != null && fast.next.next != null) { 
-            slow = slow.next; 
-            fast = fast.next.next; 
-        } 
-        return slow; 
-    } 
+	public static Node getMiddleHelper(Node head) { 
+		if (head == null) 
+			return head; 
 
-    
-    
-    public static void removeLoop(Node head){
-        // code here
-        // remove the loop without losing any nodes
-        Node slow = head;
-        Node fast = head;
-        // boolean to check if there a loop exists in the given Linked List.
-        boolean flag = false;
-        // Traverse the list until fast or fast.next becomes null.
-        while (fast != null && fast.next != null) {
-          // Move forward slow by one node.
-          slow = slow.next;
-          // Move forward fast by two nodes.
-          fast = fast.next.next;
-          // Check if slow and fast meet at some node, then there is a loop in the Linked
-          // List and So make flag true and break.
-          if (slow == fast) {
-            flag = true;
-            break;
-          }
-        }
-        // When there is a loop in the Linked List.
-        if (flag) {
-          // Assign head to slow.
-          slow = head;
-          // Loop until next of slow and fast are not equal.
-          while (slow != fast) {
-            slow = slow.next;
-            fast = fast.next;
-          }
-          
-          Node prev = fast;
-          fast = fast.next;
-          while(fast != slow){
-              prev = fast;
-              fast = fast.next;
-          }
-          
-          // Make next of fast that is last node of Linked List NULL.
-          prev.next = null;
-        }
+		Node slow = head, fast = head; 
 
-      }
-    
+		while (fast.next != null && fast.next.next != null) { 
+			slow = slow.next; 
+			fast = fast.next.next; 
+		} 
+		return slow; 
+	} 
+
+
+
+	public static void removeLoop(Node head){
+		// code here
+		// remove the loop without losing any nodes
+		Node slow = head;
+		Node fast = head;
+		// boolean to check if there a loop exists in the given Linked List.
+		boolean flag = false;
+		// Traverse the list until fast or fast.next becomes null.
+		while (fast != null && fast.next != null) {
+			// Move forward slow by one node.
+			slow = slow.next;
+			// Move forward fast by two nodes.
+			fast = fast.next.next;
+			// Check if slow and fast meet at some node, then there is a loop in the Linked
+			// List and So make flag true and break.
+			if (slow == fast) {
+				flag = true;
+				break;
+			}
+		}
+		// When there is a loop in the Linked List.
+		if (flag) {
+			// Assign head to slow.
+			slow = head;
+			// Loop until next of slow and fast are not equal.
+			while (slow != fast) {
+				slow = slow.next;
+				fast = fast.next;
+			}
+
+			Node prev = fast;
+			fast = fast.next;
+			while(fast != slow){
+				prev = fast;
+				fast = fast.next;
+			}
+
+			// Make next of fast that is last node of Linked List NULL.
+			prev.next = null;
+		}
+
+	}
+
 }

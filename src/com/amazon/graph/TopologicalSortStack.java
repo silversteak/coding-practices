@@ -14,15 +14,13 @@ public class TopologicalSortStack {
 			if(!visited[i])
 				dfsUtil(i,adj, visited, stack);
         }
-        
 		int index = 0;
         int ans[] = new int[stack.size()];
 		while(!stack.isEmpty()) {
         	ans[index] = stack.peek();
         	stack.pop();
         	++index;
-        }
-      
+        }      
 		return ans;
 	}
 

@@ -37,8 +37,4 @@ public class Move {
 		this.col = col;
 	}
 	
-	
-	
-	
-
 }

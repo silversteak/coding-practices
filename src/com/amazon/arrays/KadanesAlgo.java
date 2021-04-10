@@ -43,7 +43,6 @@ public class KadanesAlgo {
 			minSum = Math.min(minSum, currMin);
 			totalSum += A[i];
 		}
-
 		return maxSum > 0 ? Math.max(maxSum, totalSum - minSum) : maxSum ;
 	}
 
